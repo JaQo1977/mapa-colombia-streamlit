@@ -113,14 +113,14 @@ shapes = []
 
 if st.session_state.seleccionados:
     items = list(st.session_state.seleccionados.items())
-    # Leyenda pegada al borde derecho del mapa (dentro del área paper)
-    x0 = 0.76
-    x1 = 0.99
-    y_start = 0.97
+    # Leyenda esquina inferior izquierda, pegada al mapa
+    x0 = 0.01
+    x1 = 0.24
     line_h = 0.08
     box_h = 0.07 + len(items) * line_h
-    y0 = y_start - box_h
-    r = 0.015  # radio de esquinas redondeadas (simulado con path SVG)
+    y0 = 0.02
+    y_start = y0 + box_h
+    r = 0.015  # radio de esquinas redondeadas
 
     # Fondo redondeado con path SVG
     shapes.append(dict(
@@ -152,11 +152,11 @@ if st.session_state.seleccionados:
         xanchor="left", yanchor="top"
     ))
 
-    # Cada ítem: cuadro de color + nombre
+    # Cada ítem: cuadro de color + nombre (de arriba hacia abajo)
     for i, (depto, color) in enumerate(items):
         y_pos = y_start - 0.065 - i * line_h
 
-        # Cuadrito de color redondeado
+        # Cuadrito de color
         shapes.append(dict(
             type="rect",
             xref="paper", yref="paper",
